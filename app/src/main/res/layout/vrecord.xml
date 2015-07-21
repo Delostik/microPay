@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="fill_parent"
+    android:layout_height="60dp"
+    android:paddingLeft="10dp">
+
+    <ImageView android:id="@+id/rec_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5px"
+        android:src="@drawable/item"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textSize="28dp"
+            android:gravity="center"
+            android:id="@+id/rec_money"
+            android:layout_gravity="center" />
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="0.90">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/rec_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:text="支出"/>
+                <TextView android:id="@+id/rec_otherName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textSize="15dp"
+                android:text="转给xxx"/>
+
+            </LinearLayout>
+            <TextView android:id="@+id/rec_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="转给xxx"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

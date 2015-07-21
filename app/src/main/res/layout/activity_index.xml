@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ptr_layout"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:text="iChange"
+                android:textSize="22dp"
+                android:textColor="#ffffff"
+                android:id="@+id/text_index_header"
+                android:background="#ff0099ff"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:text="+233.33"
+                android:textSize="70dp"
+                android:gravity="bottom"
+                android:textColor="#ff2a3068"
+                android:id="@+id/text_index_balance"
+                android:layout_gravity="right" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#ff0099ff">
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="125dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.3"
+                android:id="@+id/btn_pay">
+
+                <ImageView
+                    android:layout_height="80dp"
+                    android:id="@+id/img_index_1"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/pay"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="付款"
+                    android:textSize="20dp"
+                    android:id="@+id/textView1"
+                    android:textColor="#FF0099FF"
+                    android:layout_gravity="center_horizontal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.3"
+                android:id="@+id/btn_receive">
+
+                <ImageView
+                    android:layout_height="80dp"
+                    android:id="@+id/img_index_2"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/receive"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="收款"
+                    android:textSize="20dp"
+                    android:id="@+id/textView2"
+                    android:textColor="#FF0099FF"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.3"
+                android:id="@+id/btn_recharge">
+
+                <ImageView
+                    android:layout_height="80dp"
+                    android:id="@+id/img_index_3"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="7dp"
+                    android:src="@drawable/recharge"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="充值"
+                    android:textSize="20dp"
+                    android:id="@+id/textView3"
+                    android:textColor="#FF0099FF"
+                    android:layout_gravity="center_horizontal" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#ff0099ff">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="1"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:id="@+id/btn_exchange">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="转出到银行卡"
+                android:id="@+id/btn_index_0"
+                android:gravity="center_vertical"
+                android:textSize="20dp"
+                android:layout_weight="0.22" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#aaaaaaff">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="1"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:id="@+id/btn_card">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="管理银行卡"
+                android:id="@+id/btn_index_1"
+                android:gravity="center_vertical"
+                android:textSize="20dp"
+                android:layout_weight="0.22" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#aaaaaaff">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="1"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:id="@+id/btn_record">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="交易记录"
+                android:id="@+id/btn_index_2"
+                android:gravity="center_vertical"
+                android:textSize="20dp"
+                android:layout_weight="0.22" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#aaaaaaff">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="1"
+            android:id="@+id/btn_info"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="设置"
+                android:id="@+id/btn_index_3"
+                android:gravity="center_vertical"
+                android:textSize="20dp"
+                android:layout_weight="0.22" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#aaaaaaff">
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ScrollView>
+</uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout>
