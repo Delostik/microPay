@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-feature android:name="android.hardware.nfc" android:required="true"/>
 
     <application
@@ -59,6 +60,8 @@
         <activity android:name=".Content.ExchangeToBankActivity" />
         <activity android:name=".Content.ExchangeChangeCardActivity" />
         <activity android:name=".Content.BalanceActivity" />
+        <activity android:name=".Content.changePasswordActivity" />
+        <activity android:name=".Content.changePayPasswordActivity" />
 
     </application>
 

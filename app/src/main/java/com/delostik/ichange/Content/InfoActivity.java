@@ -3,6 +3,7 @@ package com.delostik.ichange.Content;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.LinkAddress;
 import android.os.Bundle;
 import android.text.method.KeyListener;
 import android.util.Log;
@@ -29,6 +30,28 @@ public class InfoActivity extends Activity {
             @Override
             public void onClick(View v) {
                 writeCookie();
+            }
+        });
+
+        LinearLayout btnChangeLoginPassword = (LinearLayout)findViewById(R.id.btn_changePassword);
+        btnChangeLoginPassword.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InfoActivity.this, changePasswordActivity.class);
+                intent.putExtra("cookie", getIntent().getStringExtra("cookie"));
+                intent.putExtra("id", getIntent().getStringExtra("id"));
+                startActivity(intent);
+            }
+        });
+
+        LinearLayout btnChangePayPassword = (LinearLayout)findViewById(R.id.btn_changePayPassword);
+        btnChangePayPassword.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InfoActivity.this, changePasswordActivity.class);
+                intent.putExtra("cookie", getIntent().getStringExtra("cookie"));
+                intent.putExtra("id", getIntent().getStringExtra("id"));
+                startActivity(intent);
             }
         });
     }

@@ -25,7 +25,7 @@
             android:layout_height="78dp"
             android:id="@+id/imageView"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/avatar"
+            android:src="@drawable/avatar2"
             android:layout_marginBottom="15dp" />
 
         <LinearLayout

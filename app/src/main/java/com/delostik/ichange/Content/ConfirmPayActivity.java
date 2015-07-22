@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.delostik.ichange.HttpUtils;
+import com.delostik.ichange.Loading;
 import com.delostik.ichange.R;
 
 import org.json.JSONException;
@@ -141,6 +142,7 @@ public class ConfirmPayActivity extends Activity {
                     }
                     break;
                 case 200:
+                    Loading.show(ConfirmPayActivity.this);
                     new Thread(dopay).start();
                     break;
             }
@@ -186,6 +188,7 @@ public class ConfirmPayActivity extends Activity {
     private void returnPayRes() {
         String cookie = new String();
         String id = new String();
+        Loading.cancel();
         if (payRes == JSONObject.NULL) {
             Toast.makeText(ConfirmPayActivity.this, "连接服务器失败", Toast.LENGTH_SHORT).show();
         } else {

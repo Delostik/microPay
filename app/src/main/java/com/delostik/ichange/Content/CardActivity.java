@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.ViewGroup.LayoutParams;
 
 import com.delostik.ichange.HttpUtils;
+import com.delostik.ichange.Loading;
 import com.delostik.ichange.R;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class CardActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
-        
+        Loading.show(this);
         new Thread(getAllCards).start();
 
         listview = getListView();
@@ -129,7 +130,7 @@ public class CardActivity extends ListActivity {
                 new String[]{"title","info","img"},
                 new int[]{R.id.title,R.id.info,R.id.img});
         setListAdapter(adapter);
-
+        Loading.cancel();
     }
 
 }

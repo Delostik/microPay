@@ -2,10 +2,13 @@ package com.delostik.ichange.account;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +32,12 @@ public class RegistActivity extends Activity {
     private String tel;
     private JSONObject registRes;
     private JSONObject loginRes;
+    private AlertDialog longinDialog;
+    private View longinDialogView;
+
+    private String cookie = new String();
+    private String id = new String();
+    private String paypsw = new String();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +62,48 @@ public class RegistActivity extends Activity {
                 }
                 password = edit_password1.getText().toString();
                 if (password.length() == 0) {
-                    Toast.makeText(RegistActivity.this, "请输入密码", Toast.LENGTH_SHORT);
+                    Toast.makeText(RegistActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (!password.equals(edit_password2.getText().toString())) {
-                    Toast.makeText(RegistActivity.this, "两次输入的密码不一致", Toast.LENGTH_SHORT);
+                    Toast.makeText(RegistActivity.this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                pswDialog();
+            }
+        });
+    }
+
+    public void pswDialog () {
+        Context mContext = RegistActivity.this;
+
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        longinDialogView = layoutInflater.inflate(R.layout.setpsw, null);
+
+        longinDialog = new AlertDialog.Builder(mContext).setTitle("设置支付密码").setView(longinDialogView).create();
+        longinDialog.show();
+
+        Button confirm = (Button)longinDialogView.findViewById(R.id.btn_confirm_set);
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EditText psw1 = (EditText)longinDialogView.findViewById(R.id.setpsw1);
+                String p1 = psw1.getText().toString();
+                Log.i("okok", p1);
+                EditText psw2 = (EditText)longinDialogView.findViewById(R.id.setpsw2);
+                String p2 = psw2.getText().toString();
+                Log.i("okok", p2);
+                if (p1.length() != 6) {
+                    Toast.makeText(RegistActivity.this, "密码长度必须是6位！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!p1.equals(p2)) {
+                    Toast.makeText(RegistActivity.this, "两次输入的密码不一致！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                paypsw = p1;
                 new Thread(regist).start();
             }
         });
@@ -80,18 +124,14 @@ public class RegistActivity extends Activity {
         }
     };
 
-    private Handler loginHandler = new Handler() {
+    private Handler changeHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Bundle data = msg.getData();
-            String ret = data.getString("login_res");
-            if (ret.equals("登陆成功")) {
                 Intent lastIntent = new Intent(RegistActivity.this, RegistTelActivity.class);
                 lastIntent.putExtra("loginRes", 1);
                 RegistActivity.this.setResult(0, lastIntent);
-                String cookie = data.getString("cookie");
-                String id = data.getString("id");
                 Intent index = new Intent(RegistActivity.this, IndexActivity.class);
                 index.putExtra("cookie", cookie);
                 index.putExtra("username", username);
@@ -99,6 +139,21 @@ public class RegistActivity extends Activity {
                 index.putExtra("id", id);
                 startActivity(index);
                 RegistActivity.this.finish();
+        }
+    };
+
+    private Handler loginHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle data = msg.getData();
+            String ret = data.getString("login_res");
+            if (ret.equals("登陆成功")) {
+                cookie = data.getString("cookie");
+                new Thread(changePsw).start();
+            }
+            else {
+                Log.e("what", "wtf");
             }
         }
     };
@@ -172,7 +227,6 @@ public class RegistActivity extends Activity {
             }
 
             String msg = new String("UTF-8");
-            String cookie = "";
             if (loginRes == JSONObject.NULL) {
                 msg = "连接服务器失败";
                 Log.i("LOGIN: ", "Null Json Object");
@@ -199,6 +253,7 @@ public class RegistActivity extends Activity {
                     case 200:
                         try {
                             cookie = loginRes.getString("cookie");
+                            id = loginRes.getString("id");
                             msg = "登陆成功";
                         } catch (JSONException e) {
                             msg = "连接服务器失败";
@@ -211,8 +266,26 @@ public class RegistActivity extends Activity {
             Bundle data = new Bundle();
             data.putString("login_res", msg);
             data.putString("cookie", cookie);
+            data.putString("id", id);
             message.setData(data);
             loginHandler.sendMessage(message);
+        }
+    };
+
+    Runnable changePsw = new Runnable() {
+        @Override
+        public void run() {
+            Map<String,String> params = new HashMap<String, String>();
+            params.put("cookie", cookie);
+            params.put("id", id);
+            params.put("pwd", paypsw);
+            String strUrlPath = "http://121.40.194.163/microPay/index.php?s=/Home/User/setPayPwd.html";
+            String strResult= HttpUtils.submitPostData(strUrlPath, params, "utf-8");
+            Message msg = new Message();
+            Bundle data = new Bundle();
+            data.putString("changeRes", strResult);
+            msg.setData(data);
+            changeHandler.sendMessage(msg);
         }
     };
 
